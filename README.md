@@ -1,6 +1,6 @@
 # Python-Scripts
 
-getRadiusLogs is specifically designed to:
+getRadiusVPNLogs is specifically designed to:
 
 1. grab the log file from a mapped drive 
 2. parse out the needed text 
