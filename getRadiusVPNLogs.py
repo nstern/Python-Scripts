@@ -1,7 +1,7 @@
 from datetime import datetime
 import sys
 import os, os.path
-import lxml
+#import lxml shouldn't need this anymore
 import smtplib
 import platform
 from email.mime.text import MIMEText
