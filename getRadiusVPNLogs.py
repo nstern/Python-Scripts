@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime #imports libaries
 import sys
 import os, os.path
 #import lxml shouldn't need this anymore
@@ -24,8 +24,8 @@ desktop = userhome + '\Desktop\\'
 
 def readNewFile(path):                                                   #open latest log file
      fileName = path + "\\" + max(os.listdir(path))
-     log = open(fileName, 'r')
-     print fileName + " determined to be latest file"
+     log = open(fileName, 'r') #opens the last file 
+     print fileName + " determined to be latest file" #prints the last open file
      return log
      
 def parseLog(log, users, times, IPs):                                    #parse out needed properties
@@ -34,11 +34,11 @@ def parseLog(log, users, times, IPs):                                    #parse 
           for item in line.split(userFlagEnd):                           # grab users
                if userFlag in item:               
                     #users += item [ item.find(userFlag)+len(userFlag) : ]
-                     users += item [ item.find(userFlag)+len(userFlag) : ] + ","
+                     users += item [ item.find(userFlag)+len(userFlag) : ] + ","  #finds the username and the length
           for item in line.split(timeStampFlagEnd):
                if timeStampFlag in item:
                     #times += item [ item.find(timeStampFlag)+len(timeStampFlag) : ]
-                    times += item [ item.find(timeStampFlag)+len(timeStampFlag) : ]+ ","
+                    times += item [ item.find(timeStampFlag)+len(timeStampFlag) : ]+ "," #finds the time
           for item in line.split(IPFlagEnd):
                if IPFlag in item:
                     #IPs += item [ item.find(IPFlag)+len(IPFlag) : ]
@@ -50,12 +50,12 @@ def parseLog(log, users, times, IPs):                                    #parse 
                return users, times, IPs
 
 def formatFile(users, times, IPs): #put everything in array
-     usersL = users.split(',')
+     usersL = users.split(',') #puts commas in between each user
      timesL = times.split(',')
      IPsL = IPs.split(',')     
      x=0
-     newFile = open(desktop + 'temp_email.txt','w')
-     newFile.write("REPORT DATE: " + str(datetime.now()))
+     newFile = open(desktop + 'temp_email.txt','w') #creates a temp file
+     newFile.write("REPORT DATE: " + str(datetime.now())) #writes the current time in temp file
      newFile.write("=" * 100+"\n")
      while x < len(usersL):         
           newFile.write("\n" + usersL[x] + "\n " +timesL[x] + "\n" + IPsL[x]+"\n") 
@@ -63,7 +63,7 @@ def formatFile(users, times, IPs): #put everything in array
      newFile.close()
      print "Formatting file for email..."
 
-def sendEmail (desktop):
+def sendEmail (desktop): #Creates and sends an email 
      print "Sending email"
      fp = open(desktop + 'temp_email.txt', 'rb')
      # Create a text/plain message
